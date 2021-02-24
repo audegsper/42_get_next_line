@@ -20,7 +20,7 @@ int	get_next_line(int fd, char** line)
 		nl_num = ft_strchr_num(bkup, '\n');
 		if (nl_num == -1 && buffer_num == 0)
 		{
-			if (!(*line = malloc(sizeof(char) * ft_strlen(bkup))))
+			if (!(*line = malloc(sizeof(char) * ft_strlen(bkup) + 1)))
 				return (-1);
 			*line = ft_memcpy(*line, bkup, ft_strlen(bkup));
 			*(*line + ft_strlen(bkup)) = '\0';
@@ -29,7 +29,7 @@ int	get_next_line(int fd, char** line)
 			return (0);
 		}
 	}
-	if (!(*line = malloc(sizeof(char) * nl_num)))
+	if (!(*line = malloc(sizeof(char) * nl_num + 1)))
 		return (-1);
 	*line = ft_memcpy(*line, bkup, nl_num);
 	*(*line + nl_num) = '\0';

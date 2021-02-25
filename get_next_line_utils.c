@@ -50,6 +50,8 @@ char* ft_strjoin(char const* s1, char const* s2)
 	size_t	c1;
 	size_t	c2;
 	size_t	i;
+	size_t	ls1 = ft_strlen(s1);	// kyuhkim
+	size_t	ls2 = ft_strlen(s2);	// kyuhkim
 
 	i = 0;
 	c2 = 0;
@@ -58,14 +60,14 @@ char* ft_strjoin(char const* s1, char const* s2)
 		return (NULL);
 	if (!s1 || !s2)
 		return (!s1 ? ft_strdup(s2) : ft_strdup(s1));
-	if (!(x = (char*)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1))))
+	if (!(x = (char*)malloc(sizeof(char) * (ls1 + ls2 + 1))))
 		return (NULL);
-	while (c1 != ft_strlen(s1))
+	while (c1 != ls1)
 	{
 		x[i] = s1[c1];
 		++i&& ++c1;
 	}
-	while (c2 != ft_strlen(s2))
+	while (c2 != ls2)
 	{
 		x[i] = s2[c2];
 		++i&& ++c2;

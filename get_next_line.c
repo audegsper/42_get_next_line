@@ -7,7 +7,9 @@ int	get_next_line(int fd, char** line)
 	int				buffer_num;
 	int				nl_num;
 	char* bkup_temp;
+	int offset;
 
+	offset = 0;
 	nl_num = -1;
 	if (read(fd, buf, 0) == -1 || line == 0 || BUFFER_SIZE < 1)
 		return (-1);
@@ -17,7 +19,7 @@ int	get_next_line(int fd, char** line)
 		buf[buffer_num] = '\0';
 		if (!(bkup = ft_strjoin(bkup ? bkup : ft_strdup(""), buf)))
 			return (-1);
-		nl_num = ft_strchr_num(bkup, '\n');
+		nl_num = ft_strchr_num(bkup + offset, '\n');
 		if (nl_num == -1 && buffer_num == 0)
 		{
 			if (!(*line = malloc(sizeof(char) * ft_strlen(bkup) + 1)))

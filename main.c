@@ -6,7 +6,7 @@ int	main()
 	char* line;
 	int fd;
 	int ret;
-	fd = open("test.txt", O_RDONLY);
+	fd = open("test01.txt", O_RDONLY);
 	if (fd < 0)
 	{
 		return -1;

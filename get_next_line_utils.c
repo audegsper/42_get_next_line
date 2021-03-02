@@ -44,37 +44,27 @@ char* ft_strdup(const char* s)
 	return (copy);
 }
 
-char* ft_strjoin(char const* s1, char const* s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char* x;
-	size_t	c1;
-	size_t	c2;
-	size_t	i;
-	size_t	ls1 = ft_strlen(s1);	// kyuhkim
-	size_t	ls2 = ft_strlen(s2);	// kyuhkim
+	char	*s1plus2;
+	size_t	len_s1;
+	size_t	len_s2;
 
-	i = 0;
-	c2 = 0;
-	c1 = 0;
-	if (s1 == NULL && s2 == NULL)
-		return (NULL);
-	if (!s1 || !s2)
-		return (!s1 ? ft_strdup(s2) : ft_strdup(s1));
-	if (!(x = (char*)malloc(sizeof(char) * (ls1 + ls2 + 1))))
-		return (NULL);
-	while (c1 != ls1)
-	{
-		x[i] = s1[c1];
-		++i&& ++c1;
-	}
-	while (c2 != ls2)
-	{
-		x[i] = s2[c2];
-		++i&& ++c2;
-	}
-	x[i] = '\0';
-	free((char*)s1);
-	return (x);
+	if (!(s1))
+		return (ft_strdup(s2));
+	if (!(s2))
+		return (0);
+	len_s1 = ft_strlen(s1);
+	len_s2 = ft_strlen(s2);
+	s1plus2 = malloc(sizeof(char) * (len_s1 + len_s2 + 1));
+	if (!(s1plus2))
+		return (0);
+	ft_memcpy(s1plus2, s1, len_s1);
+	ft_memcpy(s1plus2 + len_s1, s2, len_s2);
+	s1plus2[len_s1 + len_s2] = '\0';
+	free((void *)s1);
+	s1 = NULL;
+	return (s1plus2);
 }
 
 void* ft_memcpy(void* dst, const void* src, size_t n)
